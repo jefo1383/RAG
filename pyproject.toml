@@ -1,0 +1,23 @@
+[project]
+name = "RAG"
+version = "0.1.0"
+description = "RAG: Against the machine - 42 project by Jeremy Foeller"
+readme = "README.md"
+authors = [
+    { name = "jfoeller", email = "jeremy.foeller@learner.42.tech" }
+]
+requires-python = ">=3.10"
+dependencies = [
+	"flake8",
+	"mypy",
+	"pydocstyle",
+	"pydantic",
+    "fire",
+    "tqdm",
+    "transformers",
+    "torch",
+    "rank-bm25"
+]
+[tool.pydocstyle]
+convention = "google"
+match_dir = "src"
