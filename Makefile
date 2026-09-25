@@ -8,7 +8,7 @@ export HF_HOME = /goinfre/$(USER)/.cache/huggingface
 install-42:
 	@which uv > /dev/null 2>&1 || pip install --user uv
 	mkdir -p /goinfre/$(USER)/RAG_env
-    mkdir -p $(UV_CACHE_DIR)
+	mkdir -p $(UV_CACHE_DIR)
 	mkdir -p $(HF_HOME)
 	uv venv /goinfre/$(USER)/RAG_env/.venv
 	ln -sf /goinfre/$(USER)/RAG_env/.venv .venv
@@ -29,9 +29,12 @@ clean:
 
 fclean: clean
 	rm -rf /goinfre/$(USER)/RAG_env
+	rm -rf /goinfre/$(USER)/.cache
 	rm -rf .venv
 
 re: fclean install
+
+re-42: fclean install-42
 
 lint:
 	uv run flake8 src $(FLAKE8_EXCLUDE)
