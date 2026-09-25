@@ -20,6 +20,8 @@ def chunk_markdown(
     Returns:
         List of valid Chunk instances covering the document.
     """
+    if not content.strip():
+        return []
     # 1. Identifier les positions de début de chaque titre (ex: regex sur '^#{1,6} ')
     pattern = r"^#{1,6}\s+"
     header_indices: list[int] = [
@@ -30,15 +32,11 @@ def chunk_markdown(
     # 3. Ne pas oublier le bloc initial (de 0 au premier titre, s'il existe)
     section_bounds: list[tuple[int, int]] = []
     if not header_indices:
-        nb_chunks = len(content) // 2000
-        index = 0
-        for _ in range(nb_chunks):
-            section_bounds.append((index, index + 1999))
-            index += 1999
-        section_bounds.append((index, len(content) - 1))
+        section_bounds.append((0, len(content)))
     else:
-        header_indices.insert(0, 0)
-        header_indices.append(len(content) - 1)
+        if header_indices[0] != 0:
+            header_indices.insert(0, 0)
+        header_indices.append(len(content))
         for i in range(len(header_indices) - 1):
             section_bounds.append((header_indices[i], header_indices[i + 1]))
     # 4. Pour chaque intervalle :
