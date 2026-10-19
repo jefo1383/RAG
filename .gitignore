@@ -1,6 +1,7 @@
 *pycache*
 .mypy*
 .venv
+moulinette*
 
 data/raw/*
 !data/raw/.gitkeep
