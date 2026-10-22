@@ -3,6 +3,8 @@
 import fire
 from src.indexer import Indexer
 from src.retriever import Retriever
+from src.evaluation import evaluate_search_results
+from pathlib import Path
 
 
 class CLI:
@@ -70,6 +72,28 @@ class CLI:
             print(e)
             return
         retriever.search_dataset(dataset_path, k, save_directory)
+
+    def evaluate(
+        self,
+        student_search_results_path: str,
+        dataset_path: str,
+    ) -> None:
+        """Evaluate student search results against a ground-truth dataset.
+
+        Args:
+            student_search_results_path: Path to the student search
+            results JSON.
+            dataset_path: Path to the ground-truth AnsweredQuestions JSON.
+        """
+        # 1. Vérifier que les deux fichiers existent (gestion défensive)
+        if (not Path(student_search_results_path).exists() or not
+                Path(dataset_path).exists()):
+            print(f"Error: {student_search_results_path} or "
+                  f"{dataset_path} not found")
+            return
+        # 2. Appeler evaluate_search_results
+        evaluate_search_results(student_search_results_path,
+                                dataset_path)
 
 
 if __name__ == "__main__":

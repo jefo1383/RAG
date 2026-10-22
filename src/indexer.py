@@ -15,8 +15,7 @@ def tokenize(text: str) -> list[str]:
 
 
 class Indexer:
-    """Service responsible for scanning the corpus, chunking,
-    and persisting the BM25 index."""
+    """Service scanning corpus, chunking, and persisting the BM25 index."""
 
     def __init__(
             self,

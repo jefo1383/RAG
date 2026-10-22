@@ -61,8 +61,7 @@ class Retriever:
         k: int = 10,
         save_directory: str = "data/output/search_results",
     ) -> None:
-        """Run search over a question dataset and persist
-        StudentSearchResults JSON.
+        """Search a question dataset and persist StudentSearchResults JSON.
 
         Args:
             dataset_path: Path to the input questions JSON dataset.

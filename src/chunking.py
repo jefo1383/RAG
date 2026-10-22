@@ -205,8 +205,7 @@ def chunk_python_code(
     module_nodes: list[ast.stmt] = []
 
     def flush_module_node() -> None:
-        """Helper to create a chunk from accumulated
-        module-level statements."""
+        """Create a chunk from accumulated module-level statements."""
         if not module_nodes:
             return
         m_start, _ = _get_node_span(module_nodes[0], line_offsets)
