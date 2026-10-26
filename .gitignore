@@ -13,3 +13,9 @@ data/processed/*
 
 data/output/*/*
 !data/output/*/.gitkeep
+
+data/datasets/AnsweredQuestions/*
+!data/datasets/AnsweredQuestions/.gitkeep
+
+data/datasets/UnansweredQuestions/*
+!data/datasets/UnansweredQuestions/.gitkeep
