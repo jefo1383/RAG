@@ -35,6 +35,7 @@ class Generator:
             self.device = device
         else:
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        print(f"Device set to {self.device}")
         # 2. Choisir le dtype adapté (float16 pour cuda, float32 pour cpu)
         dtype = torch.float16 if self.device == "cuda" else torch.float32
         # 3. Charger le tokenizer via AutoTokenizer
