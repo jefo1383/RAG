@@ -50,12 +50,16 @@ def evaluate_search_results(
     Returns:
         Dictionary mapping metric names (e.g. 'recall@5') to their score.
     """
-    # 1. Charger student results
-    results = StudentSearchResults.model_validate_json(
-        Path(student_search_results_path).read_text(encoding="utf-8"))
-    # 2. Charger le dataset vérité terrain
-    dataset = RagDataset.model_validate_json(
-        Path(dataset_path).read_text(encoding="utf-8"))
+    try:
+        # 1. Charger student results
+        results = StudentSearchResults.model_validate_json(
+            Path(student_search_results_path).read_text(encoding="utf-8"))
+        # 2. Charger le dataset vérité terrain
+        dataset = RagDataset.model_validate_json(
+            Path(dataset_path).read_text(encoding="utf-8"))
+    except Exception as e:
+        print(e)
+        return {}
     # 3. Indexer les questions par question_id pour les comparer facilement
     student_by_id = {r.question_id: r for r in results.search_results}
     # 4. Pour chaque valeur de k (ex: 1, 3, 5, 10) :

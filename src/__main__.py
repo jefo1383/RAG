@@ -70,10 +70,10 @@ class CLI:
         """
         try:
             retriever = Retriever(index_path)
+            retriever.search_dataset(dataset_path, k, save_directory)
         except FileNotFoundError as e:
             print(e)
             return
-        retriever.search_dataset(dataset_path, k, save_directory)
 
     def evaluate(
         self,

@@ -82,9 +82,13 @@ class Retriever:
         #    - Lire le contenu du fichier
         #    - Charger le json
         #    - Intercepter d'éventuelles erreurs de JSON malformé
-        with open(Path(dataset_path)) as file:
-            content = json.load(file)
-            dataset = RagDataset.model_validate(content)
+        try:
+            with open(Path(dataset_path)) as file:
+                content = json.load(file)
+                dataset = RagDataset.model_validate(content)
+        except (ValueError, json.JSONDecodeError, OSError) as e:
+            print(e)
+            return
         # 3. Parcourir les questions avec tqdm:
         #    - Pour chaque question : appeler self.search
         #    - Construire un MinimalSearchResults
