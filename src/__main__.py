@@ -48,6 +48,7 @@ class CLI:
             return
         sources_list = retriever.search(query, k)
         if not sources_list:
+            print("No matching source found")
             return
         for s in sources_list:
             print(f"{s.file_path} "

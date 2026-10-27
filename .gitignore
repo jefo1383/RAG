@@ -4,6 +4,7 @@
 moulinette*
 GEMINI.md
 RAG.pdf
+RAG_MASTER_GUIDE.md
 
 data/raw/*
 !data/raw/.gitkeep
@@ -11,11 +12,6 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 
-data/output/*/*
-!data/output/*/.gitkeep
-
-data/datasets/AnsweredQuestions/*
-!data/datasets/AnsweredQuestions/.gitkeep
-
-data/datasets/UnansweredQuestions/*
-!data/datasets/UnansweredQuestions/.gitkeep
+data/output/**
+!data/output/**/
+!data/output/**/.gitkeep

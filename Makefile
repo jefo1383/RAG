@@ -25,7 +25,7 @@ debug:
 	uv run python -m pdb src
 
 clean:
-	rm -rf __pycache__ .mypy_cache .python-version
+	rm -rf __pycache__ src/__pycache__ .mypy_cache .python-version
 
 fclean: clean
 	rm -rf /goinfre/$(USER)/RAG_env
